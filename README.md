@@ -1,6 +1,6 @@
 # Rebellion Test Backender
 
-## Steps to run adn test the code
+## Steps to run and test the code
 
 1. `git clone git@github.com:marcosantar93/cloudinary-microservice.git`
 2. `cd cloudinary-microservice && npm install`

@@ -13,7 +13,7 @@ module.exports = {
 }
 ```
 4. `npm start`
-5. Open to Postman or a web browser and send GET requests to `localhost:3000/cloudinary/statistics` and `localhost:3000/cloudinary/csv`
+5. Open Postman or a web browser and send GET requests to `localhost:3000/cloudinary/statistics` and `localhost:3000/cloudinary/csv`
 
 ## Description
 We would like to start to use Cloudinary to save some public photos, but we are afraid about the use some people could do of this platform.

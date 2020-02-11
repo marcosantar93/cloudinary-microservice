@@ -5,7 +5,7 @@ const cloudinaryConfig = require("../config/cloudinary");
 // cloudinary service configuration
 cloudinary.config(cloudinaryConfig);
 
-const getResources = async callback => {
+const getResources = async () => {
   const resources = [];
   let response;
   do {
@@ -22,7 +22,7 @@ const getResources = async callback => {
     // the resources available
   } while (response.next_cursor);
   response.resources = resources;
-  callback(response);
+  return response;
 };
 
 module.exports = {

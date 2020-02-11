@@ -28,15 +28,15 @@ Showing the info (sample):
 ```
 
 {
-totalImages: 1000,
-formats: {
-jpg: 23,
-png: 300,
-svg: 677
-},
-biggestPicture: 'https://res.cloudinary.com/dbnuvqzms/image/upload/v1580932194/wallhdpic_20_fsou0u.jpg',
-smallestPicutre: 'https://res.cloudinary.com/dbnuvqzms/image/upload/v1580932187/wallhdpic_1_gwkxuu.jpg',
-avgSize: 3002
+  totalImages: 1000,
+  formats: {
+    jpg: 23,
+    png: 300,
+    svg: 677
+  },
+  biggestPicture: 'https://res.cloudinary.com/dbnuvqzms/image/upload/v1580932194/wallhdpic_20_fsou0u.jpg',
+  smallestPicutre: 'https://res.cloudinary.com/dbnuvqzms/image/upload/v1580932187/wallhdpic_1_gwkxuu.jpg',
+  avgSize: 3002
 }
 
 ```

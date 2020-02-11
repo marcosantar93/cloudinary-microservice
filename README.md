@@ -1,6 +1,6 @@
-## Rebellion Test Backender
+# Rebellion Test Backender
 
-# Steps to run adn test the code
+## Steps to run adn test the code
 
 1. `git clone git@github.com:marcosantar93/cloudinary-microservice.git`
 2. `cd cloudinary-microservice && npm install`
@@ -15,12 +15,12 @@ module.exports = {
 4. `npm start`
 5. Open to Postman or a web browser and send GET requests to `localhost:3000/cloudinary/statistics` and `localhost:3000/cloudinary/csv`
 
-# Description
+## Description
 We would like to start to use Cloudinary to save some public photos, but we are afraid about the use some people could do of this platform.
 
 We need a Microservice with 2 calls made with Node.js.
 
-# Get some statistics
+## Get some statistics
 Sample URL: `SOME_URL/cloudinary/statistics`
 
 Showing the info (sample):
@@ -41,7 +41,7 @@ avgSize: 3002
 
 ```
 
-# Get a csv
+## Get a csv
 Sample URL: `SOME_URL/cloudinary/csv`
 
 Returns a CSV file with a list of All images hosted in Cloudinary (sample):

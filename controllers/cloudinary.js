@@ -66,7 +66,7 @@ const getCsv = async (req, res) => {
     res.setHeader("Content-Type", "text/csv");
     res.setHeader(
       "Content-Disposition",
-      "attachment; filename='" + "download-" + Date.now() + ".csv'"
+      'attachment; filename="' + 'download-' + Date.now() + '.csv"'
     );
     res.setHeader("Cache-Control", "no-cache");
     res.setHeader("Pragma", "no-cache");

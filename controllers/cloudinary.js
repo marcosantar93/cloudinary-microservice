@@ -8,39 +8,39 @@ const getStatistics = async (req, res) => {
 
     // check if array of resources returned is empty
     if (resources && resources.length) {
-      const formats = {};
-      let totalSize = 0;
-      let minResource = resources[0];
-      let maxResource = resources[0];
-
-      for (let i = 0; i < resources.length; i++) {
-        formats[resources[i].format] = formats[resources[i].format]
-          ? formats[resources[i].format] + 1
-          : 1;
-
-        // avgSize, smallest and biggest picture calculated with "bytes" field
-        // instead of "pixels" because pixel number does not vary as much
-        // and some filetypes may not even have this field
-        totalSize += resources[i].bytes;
-
-        if (minResource.bytes > resources[i].bytes) {
-          minResource = resources[i];
+      const resourcesData = resources.reduce(
+        (result, resource) => {
+          result.formats[resource.format] = result.formats[resource.format]
+            ? result.formats[resource.format] + 1
+            : 1;
+          // avgSize, smallest and biggest picture calculated with "bytes" field
+          // instead of "pixels" because pixel number does not vary as much
+          // and some filetypes may not even have this field
+          if (result.minResource.bytes > resource.bytes)
+            result.minResource = resource;
+          if (result.maxResource.bytes < resource.bytes)
+            result.maxResource = resource;
+          result.totalSize += resource.bytes;
+          return result;
+        },
+        {
+          minResource: resources[0],
+          maxResource: resources[0],
+          totalSize: 0,
+          formats: {}
         }
-        if (maxResource.bytes < resources[i].bytes) {
-          maxResource = resources[i];
-        }
-      }
+      );
 
       // bytes can not be fragmented, so it does not make much sense
       // leaving it with decimals
-      const avgSize = Math.floor(totalSize / resources.length);
+      const avgSize = Math.floor(resourcesData.totalSize / resources.length);
 
       res.json({
         totalImages: resources.length,
-        formats,
-        biggestPicture: maxResource.secure_url,
-        smallestPicutre: minResource.secure_url,
-        avgSize
+        formats: resourcesData.formats,
+        biggestPicture: resourcesData.maxResource.secure_url,
+        smallestPicutre: resourcesData.minResource.secure_url,
+        avgSize: avgSize
       });
     } else {
       res.json({
@@ -60,7 +60,7 @@ const getStatistics = async (req, res) => {
 const getCsv = async (req, res) => {
   try {
     const cloudinaryResp = await cloudinary.getResources();
-    
+
     // adding appropriate headers, so browsers can start downloading
     // file as soon as this request starts to get served
     res.setHeader("Content-Type", "text/csv");

@@ -52,9 +52,13 @@ const getStatistics = async (req, res) => {
       });
     }
   } catch (errorResp) {
-    const { http_code, message } = errorResp.error;
-    console.log("An error occurred: ", message);
-    res.status(http_code).json(message);
+    console.log("An error occurred: ", errorResp);
+    if(errorResp.error){
+      const { http_code, message } = errorResp.error;
+      res.status(http_code).json(message);
+    } else {
+      res.status(500).json(errorResp);
+    }
   }
 };
 
@@ -82,9 +86,13 @@ const getCsv = async (req, res) => {
     // since res is an abstraction over node http's response object which supports "streams"
     stringify(arrayToStringify, { header: true }).pipe(res);
   } catch (errorResp) {
-    const { http_code, message } = errorResp.error;
-    console.log("An error occurred: ", message);
-    res.status(http_code).json(message);
+    console.log("An error occurred: ", errorResp);
+    if(errorResp.error){
+      const { http_code, message } = errorResp.error;
+      res.status(http_code).json(message);
+    } else {
+      res.status(500).json(errorResp);
+    }
   }
 };
 

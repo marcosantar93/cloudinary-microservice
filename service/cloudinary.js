@@ -11,10 +11,12 @@ const getResources = async () => {
   do {
     // getResources uses cloudinary search method as it shows
     // all the relevant information about each resource.
+    // other api methods?
     response = await cloudinary.search
       .max_results(MAX_RESULTS)
       .next_cursor(response && response.next_cursor)
       .execute();
+    // other array methods?
     resources.push(...response.resources);
     // the maximum amount of records returned may not include
     // all resources, so we repeat the search until there isn't

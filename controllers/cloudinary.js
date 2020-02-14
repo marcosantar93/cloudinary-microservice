@@ -51,9 +51,10 @@ const getStatistics = async (req, res) => {
         avgSize: 0
       });
     }
-  } catch (error) {
-    console.log("An error ocurred", error);
-    res.json(error);
+  } catch (errorResp) {
+    const { http_code, message } = errorResp.error;
+    console.log("An error occurred: ", message);
+    res.status(http_code).json(message);
   }
 };
 
@@ -80,9 +81,10 @@ const getCsv = async (req, res) => {
     // to a writeable stream which is "res" (the response object from express.js)
     // since res is an abstraction over node http's response object which supports "streams"
     stringify(arrayToStringify, { header: true }).pipe(res);
-  } catch (error) {
-    console.log("An error ocurred", error);
-    res.json(error);
+  } catch (errorResp) {
+    const { http_code, message } = errorResp.error;
+    console.log("An error occurred: ", message);
+    res.status(http_code).json(message);
   }
 };
 
